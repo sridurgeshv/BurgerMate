@@ -1,0 +1,252 @@
+* {
+  font-family: 'Poppins', sans-serif;
+}
+
+body {
+  padding: 0px;
+  margin: 0px;
+}
+
+.nav {
+  background-color: orange;
+  height: 60px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+  box-sizing: border-box;
+}
+
+.logo {
+  font-size: 20px;
+  font-weight: 600;
+  flex-grow: 1;
+}
+
+.nav > a,
+.nav-links a {
+  text-decoration: none;
+  color: #000;
+  font-size: 16px;
+  padding: 5px;
+}
+
+.nav-links {
+  display: flex;
+  gap: 10px;
+}
+
+@media (max-width: 768px) {
+  .nav {
+      flex-direction: column;
+      height: auto;
+      padding: 10px;
+      align-items: flex-start;
+  }
+
+  .nav-links {
+      flex-direction: column;
+      width: 100%;
+      margin-top: 10px;
+  }
+
+  .logo {
+      margin-bottom: 10px;
+  }
+}
+
+.container img {
+  width: 150px;
+}
+
+.container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 50px;
+  width: 800px;
+  max-width: 800px;
+  margin-left: 450px;
+  position: relative;
+  top:250px;
+}
+
+.item1 {
+  position: relative;
+  top: -200px;
+  left:250px; 
+  animation-name: burger;
+  animation-duration: 3s;
+  animation-delay: 1s;
+}
+
+@keyframes burger {
+  0%   { transform: translateX(calc(50% - 800px)); }
+  100% { transform: translateX(0); }
+}
+
+.item2 {
+  position: relative;
+  top: -10px;
+  left:250px; 
+  animation-name: soda;
+  animation-duration: 3s;
+  animation-delay: 1s;
+}
+
+@keyframes soda {
+  0%   { transform: translateX(calc(100% - 900px)); }
+  100% { transform: translateX(0); }
+}
+
+.item3 {
+  position: relative;
+  top: 200px;
+  left:-400px; 
+  animation-name: Sides;
+  animation-duration: 3s;
+  animation-delay: 1s;
+}
+
+@keyframes Sides {
+  0%   { transform: translateX(calc(100% - 900px)); }
+  100% { transform: translateX(0); }
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: calc(95vh - 50px);
+}
+
+.burger {
+  color: yellow;
+}
+
+.menu {
+  position: relative;
+  right:500px;
+  bottom:100px;
+  margin: 0 auto;
+  height: 550px;
+  width: 300px;
+  max-width: 90vw; /* Added max-width for smaller screens */
+}
+
+.book {
+  position: relative;
+  border-radius: 10px;
+  width: 100%;
+  height: 450px;
+  background-color: whitesmoke;
+  box-shadow: 1px 1px 12px #000;
+  transform: preserve-3d;
+  perspective: 2000px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #000;
+  padding: 20px;
+}
+
+.cover {
+  top: 0;
+  position: absolute;
+  background-color: lightgray;
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.5s;
+  transform-origin: 0;
+  box-shadow: 1px 1px 12px #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-top: 25px;
+}
+
+.cover h2 {
+  text-align: center;
+  position: absolute;
+  top: 5px;
+  font-size: 1.5rem; /* Changed to rem unit */
+}
+
+.cover h3 {
+  text-align: center;
+  position: absolute;
+  top: 45px;
+  font-size: 1.25rem; /* Changed to rem unit */
+}
+
+.cover ul {
+  font-size: 0.9rem; /* Changed to rem unit */
+}
+
+.book:hover .cover {
+  transition: all 0.5s;
+  transform: rotateY(-80deg);
+}
+
+.book li {
+  list-style-type: none;
+}
+
+.book ul {
+  padding: 0;
+  margin: 0;
+}
+
+@media (max-width: 768px) {
+  .menu {
+    margin: 0 auto;
+    width: 90vw;
+  }
+
+  .book {
+    height: auto;
+    max-height: 80vh;
+    overflow-y: auto;
+  }
+
+  .cover {
+    position: relative;
+    padding: 10px;
+  }
+
+  .cover h2,
+  .cover h3 {
+    position: static;
+  }
+}
+
+.footer {
+  width: 100%;
+  height: auto;
+  background-color: orange;
+  display: flex;
+  align-items: center; /* Keep vertical centering */
+  transition: transform 0.5s ease-in-out;
+  text-align: left; /* Align text to the left */
+}
+
+.hidden-footer {
+  transform: translateY(50px);
+}
+
+.footer p {
+  position: relative;
+  left:25px;
+  font-size: 1rem;
+}
+
+/* Media Queries for responsive adjustments */
+@media (max-width: 768px) {
+  .footer p {
+    font-size: 0.8em; /* Adjust font size for smaller screens */
+  }
+}
