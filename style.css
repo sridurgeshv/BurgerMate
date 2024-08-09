@@ -7,10 +7,7 @@ body {
   flex-direction: column;
   min-height: 100vh;
   margin: 0;
-}
-
-.content {
-  flex: 1; /* Ensures that the content area expands to fill the available space */
+  padding: 0;
 }
 
 .nav {
@@ -22,6 +19,7 @@ body {
   align-items: center;
   padding: 0 20px;
   box-sizing: border-box;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);    
 }
 
 .logo {
@@ -121,11 +119,7 @@ body {
 }
 
 .content {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  height: calc(95vh - 50px);
+  flex: 1;
 }
 
 .burger {
@@ -230,30 +224,57 @@ body {
   }
 }
 
-.content h1 { 
-font-style: italic;
-font-family: fantasy;
-font-size: 85px;
-color: orange;
-align-items: left;
-text-align: left;
+.content {
+  display: flex; /* Align header and circle side-by-side */
+  align-items: center; /* Vertically center the items */
+  justify-content: space-between; /* Add space between header and circle */
+  padding: 120px;
+}
+
+.content h1 {
+  font-style: normal;
+  font-family: 'Poppins', sans-serif;
+  font-size: 75px;
+  color: orange;
+  margin-bottom: 20px;
+  text-align: left;
 }
 
 .content p {
-  font-size: 20px;
+  font-size: 18px;
+  color: #555555;
+  margin-bottom: 30px;
 }
 
-.circle {
-  width:40px;
-  height:40px;
-  border-radius: 50%;
-  color:#000;
-  align-items: right;
+.circle-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 500px; /* Adjusted height for better alignment */
+  width: 650px; /* Adjusted width for better alignment */
+  background-color: orange; /* Adjusted color from black to orange */
+  border-radius: 50%; /* Keep the circle shape */
 }
 
 .border-line {
   border: 2px solid orange; /* Added 'solid' for the border style */
   margin: 0; /* Remove default margin */
+}
+
+.learn-more {
+  font-size: 16px;
+  padding: 10px 20px; /* Added padding to make button size independent */
+  color: white;
+  background-color: #ff7f50; /* Coral color background */
+  border: none;
+  border-radius: 2px;
+  cursor: pointer;
+  text-transform: uppercase;
+  transition: background-color 0.3s ease;
+}
+
+.learn-more:hover {
+  background-color: #b49893; /* Darker coral color on hover */
 }
 
 .footer {
