@@ -24,15 +24,15 @@ body {
 }
 
 .nav .special {
-  border: 2px solid orange;
+  border: 2px solid black;
   padding: 10px 10px;
   border-radius: 15px;
-  background-color: #ff7f50;
+  background-color: orange;
 }
 
 .nav .special:hover {
   color:white;
-  background-color: grey;
+  background-color: yellowgreen;
 }
 
 .logo {
@@ -319,3 +319,70 @@ body {
   }
 }
 
+.Contact-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.contact-form {
+  background-color: white;
+  padding: 40px 60px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  width: 400px;
+}
+
+.contact-form h2 {
+  margin-bottom: 10px;
+  font-size: 24px;
+  color: #333;
+}
+
+.contact-form p {
+  margin-bottom: 30px;
+  color: #777;
+  font-size: 16px;
+}
+
+.contact-form label {
+  display: block;
+  text-align: left;
+  margin-bottom: 5px;
+  font-weight: bold;
+  color: #333;
+}
+
+.contact-form input[type="email"],
+.contact-form input[type="text"],
+.contact-form textarea {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+}
+
+.contact-form textarea {
+  height: 100px;
+  resize: none;
+}
+
+.send-message {
+  background-color: orange;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  text-transform: uppercase;
+  transition: background-color 0.3s ease;
+}
+
+.send-message:hover {
+  background-color: darkorange;
+}
