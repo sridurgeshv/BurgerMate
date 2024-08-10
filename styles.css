@@ -250,6 +250,9 @@ body {
   font-size: 75px;
   color: orange;
   margin-bottom: 20px;
+}
+.content-text {
+  max-width: 50%;
   text-align: left;
 }
 
@@ -262,11 +265,16 @@ body {
 .circle-container {
   display: flex;
   align-items: center;
-  justify-content: center;
-  height: 500px; /* Adjusted height for better alignment */
-  width: 650px; /* Adjusted width for better alignment */
-  background-color: orange; /* Adjusted color from black to orange */
-  border-radius: 50%; /* Keep the circle shape */
+  justify-content: flex-end;
+  height: 500px; 
+  width: 650px;
+}
+
+.circle {
+  background-color: orange;
+  height: 500px; 
+  width: 500px; 
+  border-radius: 50%;
 }
 
 .border-line {
