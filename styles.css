@@ -400,3 +400,12 @@ body {
 .send-message:hover {
   background-color: darkorange;
 }
+
+.orders h1{
+  font-size:45px;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  align-items: center;
+  text-align:center;
+  top: 0;
+  color: orange;
+}
