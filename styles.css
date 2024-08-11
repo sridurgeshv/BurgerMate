@@ -27,12 +27,12 @@ body {
   border: 2px solid black;
   padding: 10px 10px;
   border-radius: 15px;
-  background-color: orange;
+  background-color: #f9c02e;
 }
 
 .nav .special:hover {
   color:white;
-  background-color: yellowgreen;
+  background-color: orange;
 }
 
 .logo {
@@ -206,6 +206,37 @@ text-align: center;
 margin-top: 50px;
 align-items: center;
 }
+
+.image-container1 {
+  display: flex;
+  flex-direction: row;
+  border-radius: 2px;
+  gap: 15px;
+  align-items: center;
+  justify-content: center;
+}
+
+.image-container1 img {
+  height: 350px;
+  width: 320px;
+  border-radius: 15px;
+}
+
+.image-container2 {
+  display: flex;
+  flex-direction: row;
+  border-radius: 2px;
+  gap: 15px;
+  align-items: center;
+  justify-content: center;
+}
+
+.image-container2 img {
+  height: 350px;
+  width: 300px;
+  border-radius: 15px;
+}
+
 
 .content2 h1 {
   align-items: center;
