@@ -188,6 +188,25 @@ body {
   }
 }
 
+.burger-images {
+  position: relative;
+  width: 450px; /* Adjust this size as needed */
+  height: auto;
+  display: block;
+  margin: 0 auto; /* Center the image horizontally */
+  top: 45px; /* Adjust this value to perfectly position the image on top of the circle */
+  border-radius: 25px;
+}
+
+.social h2{
+font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+font-style: oblique;
+font-size: 45px;
+text-align: center;
+margin-top: 50px;
+align-items: center;
+}
+
 .content2 h1 {
   align-items: center;
   text-align: center;
