@@ -238,30 +238,50 @@ align-items: center;
   border-radius: 15px;
 }
 
-.timings h3 {
+.opening-hours h3 {
   font-size: 40px;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  align-items: center;
   text-align: center;
+  margin-bottom: 10px;
 }
 
-.timings p {
-  font-size: 25px;
+.opening-hours p {
+  font-size: 20px;
   font-family: 'Times New Roman', Times, serif;
   text-align: center;
+  margin-bottom: 20px;
+  color: #666;
 }
 
-.time-header {
+.day-times {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 20px;
+}
+
+.day-time {
+  width: 280px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  padding: 15px 20px;
   text-align: center;
+  background-color: #f9f9f9;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.day {
   font-size: 18px;
+  font-weight: bold;
+  color: #333;
   font-family: 'Courier New', Courier, monospace;
+  margin-bottom: 8px;
 }
 
-.times p {
-  text-align: center;
-  font-size: 14px;
+.time {
+  font-size: 16px;
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-  color:grey;
+  color: #888;
 }
 
 .content2 h1 {
