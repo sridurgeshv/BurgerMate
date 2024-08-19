@@ -41,6 +41,6 @@ This project aimed to elevate the user experience on a food ordering website by 
 3. **Virtual Assistants**: Fueling virtual assistants integrated into various applications, aiding users in tasks like setting reminders, scheduling meetings, or retrieving information from databases with natural language interactions.
    
 ## Architecture:
-![Alt Text](https://github.com/sridurgeshv/AWS-Projects-beginners/blob/main/4.%20BurgerMate/images/architecture.png)
+![Alt Text](https://github.com/sridurgeshv/BurgerMate/blob/main/images/architecture.png)
 
 Experience the conversational excellence of BurgerMate: [BurgerMate](http://burgerbotie.s3-website-us-east-1.amazonaws.com/)
