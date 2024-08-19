@@ -1,14 +1,21 @@
 import json
+import boto3  # Import the Boto3 library to interact with AWS services
+from uuid import uuid4  # Import uuid4 to generate unique Order IDs
 
+# Define the valid options for each slot
 burger_sizes = ['Mini', 'Standard', 'Big']
-burger_types = ['Vegetarian', 'Non-vegetarian']
+burger_types = ['vegetarian', 'non-vegetarian']
 vegburger_types = ['Lentil Patty', 'Fresh vegetables', 'Portobello mushrooms']
 nvegburger_types = ['Chicken', 'Beef', 'Pork']
-side_types = ['Fries', 'Onion Rings', 'Cucumber salad']
+side_types = ['fries', 'onion Rings', 'cucumber salad']
 drink_types = ['Soda', 'Coca-Cola', 'Pepsi']
 
+# Initialize the DynamoDB client
+dynamodb = boto3.resource('dynamodb')
+table = dynamodb.Table('Orders')
 
 def validate_order(slots):
+    # Validation logic for each slot
     if not slots['BurgerSize']:
         print('Validating BurgerSize Slot')
         return {
@@ -39,7 +46,7 @@ def validate_order(slots):
             'message': 'Please select a vegetarian or non-vegetarian burger.'
         }
 
-    if slots['BurgerType']['value']['originalValue'] == 'Vegetarian':
+    if slots['BurgerType']['value']['originalValue'] == 'vegetarian':
         if not slots['Vegburger']:
             print('Validating Vegburger Slot')
             return {
@@ -54,7 +61,7 @@ def validate_order(slots):
                 'message': 'Please select a veggie patty type of {}.'.format(", ".join(vegburger_types))
             }
 
-    if slots['BurgerType']['value']['originalValue'] == 'Non-vegetarian':
+    if slots['BurgerType']['value']['originalValue'] == 'non-vegetarian':
         if not slots['NvegBurger']:
             print('Validating NvegBurger Slot')
             return {
@@ -159,6 +166,20 @@ def lambda_handler(event, context):
             }
 
     if event['invocationSource'] == 'FulfillmentCodeHook':
+        # Extract order details from the slots
+        order_details = {
+            'OrderID': str(uuid4()),  # Add OrderID field with a unique identifier
+            'BurgerSize': slots['BurgerSize']['value']['originalValue'],
+            'BurgerType': slots['BurgerType']['value']['originalValue'],
+            'Vegburger': slots.get('Vegburger', {}).get('value', {}).get('originalValue'),
+            'NvegBurger': slots.get('NvegBurger', {}).get('value', {}).get('originalValue'),
+            'SideType': slots['SideType']['value']['originalValue'],
+            'DrinkType': slots['DrinkType']['value']['originalValue']
+        }
+
+        # Save the order details in the DynamoDB table
+        table.put_item(Item=order_details)
+
         response = {
             "sessionState": {
                 "dialogAction": {
@@ -169,12 +190,11 @@ def lambda_handler(event, context):
                     "slots": slots,
                     "state": "Fulfilled"
                 }
-
             },
             "messages": [
                 {
                     "contentType": "PlainText",
-                    "content": "I've placed your order."
+                    "content": "I've placed your order and saved it to our system."
                 }
             ]
         }
