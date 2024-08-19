@@ -43,4 +43,4 @@ This project aimed to elevate the user experience on a food ordering website by 
 ## Architecture:
 ![Alt Text](https://github.com/sridurgeshv/BurgerMate/blob/main/images/architecture.png)
 
-Experience the conversational excellence of BurgerMate: [BurgerMate](http://burgerbotie.s3-website-us-east-1.amazonaws.com/)
+Experience the conversational excellence of BurgerMate: [BurgerMate](http://burgerstall.s3-website-us-east-1.amazonaws.com/index.html)
