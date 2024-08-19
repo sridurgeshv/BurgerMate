@@ -28,53 +28,39 @@
         <a class="special" href="menu.html">Menu</a>
     </div>
     <div class="content">
-        <div class="orders">
-            <h1>Here is the list of your orders</h1>
-            <div id="orderList">
-                <!-- Orders will be displayed here -->
-            </div>
-        </div>
+    <div class="orders">
+        <h1>Here is the list of the orders</h1>
+        <ul id="orders-list"></ul>
+    </div>
     </div>
     <hr class="border-line">
     <div class="footer">
         <p>BurgerMate © 2024</p>
     </div>
 
-    <!-- JavaScript to fetch and display orders -->
     <script>
+        // API Gateway URL (replace this with your actual URL)
+        const apiUrl = 'https://i1zljzghn0.execute-api.us-east-1.amazonaws.com/prod/orders';
+
         async function fetchOrders() {
             try {
-                const response = await fetch('/getOrders');  // Fetch orders from backend API
+                const response = await fetch(apiUrl);
                 const orders = await response.json();
 
-                const orderList = document.getElementById('orderList');
-                orderList.innerHTML = '';
+                const ordersList = document.getElementById('orders-list');
+                ordersList.innerHTML = '';
 
-                if (orders.length > 0) {
-                    orders.forEach(order => {
-                        const orderDiv = document.createElement('div');
-                        orderDiv.className = 'order-item';
-                        orderDiv.innerHTML = `
-                            <p><strong>Order ID:</strong> ${order.OrderID}</p>
-                            <p><strong>Burger Size:</strong> ${order.BurgerSize}</p>
-                            <p><strong>Burger Type:</strong> ${order.BurgerType}</p>
-                            <p><strong>Patty Type:</strong> ${order.Vegburger || order.NvegBurger}</p>
-                            <p><strong>Side:</strong> ${order.SideType}</p>
-                            <p><strong>Drink:</strong> ${order.DrinkType}</p>
-                            <hr>
-                        `;
-                        orderList.appendChild(orderDiv);
-                    });
-                } else {
-                    orderList.innerHTML = '<p>No orders found.</p>';
-                }
+                orders.forEach(order => {
+                    const listItem = document.createElement('li');
+                    listItem.textContent = `${order.BurgerSize} ${order.BurgerType} with ${order.SideType} and ${order.DrinkType}`;
+                    ordersList.appendChild(listItem);
+                });
             } catch (error) {
                 console.error('Error fetching orders:', error);
-                document.getElementById('orderList').innerHTML = '<p>Error fetching orders. Please try again later.</p>';
             }
         }
 
-        // Fetch orders when the page loads
+        // Fetch orders on page load
         window.onload = fetchOrders;
     </script>
 </body>
