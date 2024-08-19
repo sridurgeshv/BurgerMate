@@ -343,7 +343,7 @@ align-items: center;
   gap: 50px;
   width: 800px;
   max-width: 800px;
-  margin-left: 450px;
+  margin-left: 850px;
   position: relative;
   top:250px;
 }
@@ -364,7 +364,7 @@ align-items: center;
 
 .item2 {
   position: relative;
-  top: -10px;
+  top: -35px;
   left:250px; 
   animation-name: soda;
   animation-duration: 3s;
@@ -378,7 +378,7 @@ align-items: center;
 
 .item3 {
   position: relative;
-  top: 200px;
+  top: 160px;
   left:-400px; 
   animation-name: Sides;
   animation-duration: 3s;
