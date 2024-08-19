@@ -25,19 +25,58 @@
         <a href="about.html">About</a>
         <a href="feedback.html">Feedback</a>
         <a href="orders.html">Orders</a>
-        <a class = "special" href="menu.html">Menu</a>
+        <a class="special" href="menu.html">Menu</a>
     </div>
     <div class="content">
-    <div class="orders">
-        <h1>
-        Here is the list of the order
-        </h1>
-    </div>
+        <div class="orders">
+            <h1>Here is the list of your orders</h1>
+            <div id="orderList">
+                <!-- Orders will be displayed here -->
+            </div>
+        </div>
     </div>
     <hr class="border-line">
     <div class="footer">
         <p>BurgerMate © 2024</p>
     </div>
+
+    <!-- JavaScript to fetch and display orders -->
+    <script>
+        async function fetchOrders() {
+            try {
+                const response = await fetch('/getOrders');  // Fetch orders from backend API
+                const orders = await response.json();
+
+                const orderList = document.getElementById('orderList');
+                orderList.innerHTML = '';
+
+                if (orders.length > 0) {
+                    orders.forEach(order => {
+                        const orderDiv = document.createElement('div');
+                        orderDiv.className = 'order-item';
+                        orderDiv.innerHTML = `
+                            <p><strong>Order ID:</strong> ${order.OrderID}</p>
+                            <p><strong>Burger Size:</strong> ${order.BurgerSize}</p>
+                            <p><strong>Burger Type:</strong> ${order.BurgerType}</p>
+                            <p><strong>Patty Type:</strong> ${order.Vegburger || order.NvegBurger}</p>
+                            <p><strong>Side:</strong> ${order.SideType}</p>
+                            <p><strong>Drink:</strong> ${order.DrinkType}</p>
+                            <hr>
+                        `;
+                        orderList.appendChild(orderDiv);
+                    });
+                } else {
+                    orderList.innerHTML = '<p>No orders found.</p>';
+                }
+            } catch (error) {
+                console.error('Error fetching orders:', error);
+                document.getElementById('orderList').innerHTML = '<p>Error fetching orders. Please try again later.</p>';
+            }
+        }
+
+        // Fetch orders when the page loads
+        window.onload = fetchOrders;
+    </script>
 </body>
 </html>
   
