@@ -145,18 +145,19 @@ body {
 
 .learn-more {
   font-size: 16px;
+  font-weight: bolder;
   padding: 10px 20px; /* Added padding to make button size independent */
-  color: white;
-  background-color: #ff7f50; /* Coral color background */
-  border: none;
+  color: #ff7f50;
+  background-color: white; /* Coral color background */
+  border: 1px solid #ff7f50;
   border-radius: 2px;
   cursor: pointer;
-  text-transform: uppercase;
   transition: background-color 0.3s ease;
 }
 
 .learn-more:hover {
-  background-color: #b49893; /* Darker coral color on hover */
+  color: white;
+  background-color: #ff7f50; /* Darker coral color on hover */
 }
 
 .footer {
