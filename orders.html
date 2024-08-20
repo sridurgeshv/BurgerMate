@@ -8,15 +8,17 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
     <link rel="icon" href="./images/burger.png" type="image/png">
     <script type="text/javascript">
-      (function(d, m){
-          var kommunicateSettings = 
-              {"appId":"c51b11849512fea985056778c3a9f1d9","popupWidget":true,"automaticChatOpenOnNavigation":true};
-          var s = document.createElement("script"); s.type = "text/javascript"; s.async = true;
-          s.src = "https://widget.kommunicate.io/v2/kommunicate.app";
-          var h = document.getElementsByTagName("head")[0]; h.appendChild(s);
-          window.kommunicate = m; m._globals = kommunicateSettings;
-      })(document, window.kommunicate || {});
-  </script>
+        document.addEventListener('DOMContentLoaded', function() {
+            (function(d, m){
+                var kommunicateSettings = 
+                    {"appId":"c51b11849512fea985056778c3a9f1d9","popupWidget":true,"automaticChatOpenOnNavigation":true};
+                var s = document.createElement("script"); s.type = "text/javascript"; s.async = true;
+                s.src = "https://widget.kommunicate.io/v2/kommunicate.app";
+                var h = document.getElementsByTagName("head")[0]; h.appendChild(s);
+                window.kommunicate = m; m._globals = kommunicateSettings;
+            })(document, window.kommunicate || {});
+        });
+    </script>        
 </head>
 <body>
     <div class="nav">
@@ -45,20 +47,34 @@
         async function fetchOrders() {
     try {
         const response = await fetch(apiUrl);
+
+        // Check if the response is okay
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+
         const orders = await response.json();
+
+        // Log the orders to check its structure
+        console.log('Fetched orders:', orders);
 
         const ordersList = document.getElementById('orders-list');
         ordersList.innerHTML = '';
 
-        orders.forEach(order => {
-            const listItem = document.createElement('li');
-            listItem.textContent = `${order.BurgerSize} ${order.BurgerType} with ${order.SideType} and ${order.DrinkType}`;
-            ordersList.appendChild(listItem);
-        });
-            } catch (error) {
-                console.error('Error fetching orders:', error);
-            }
+        // Assuming orders should be an array
+        if (Array.isArray(orders)) {
+            orders.forEach(order => {
+                const listItem = document.createElement('li');
+                listItem.textContent = `${order.BurgerSize} ${order.BurgerType} with ${order.SideType} and ${order.DrinkType}`;
+                ordersList.appendChild(listItem);
+            });
+        } else {
+            console.error('Error: Expected an array but got:', orders);
         }
+    } catch (error) {
+        console.error('Error fetching orders:', error);
+    }
+    }
 
         // Fetch orders on page load
         window.onload = fetchOrders;
