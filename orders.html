@@ -45,35 +45,25 @@
         const apiUrl = 'https://i1zljzghn0.execute-api.us-east-1.amazonaws.com/prod/orders';
 
         async function fetchOrders() {
-    try {
-        const response = await fetch(apiUrl);
+        try {
+            const response = await fetch(apiUrl);
+            const data = await response.json();
 
-        // Check if the response is okay
-        if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
+            if (Array.isArray(data)) {
+                const ordersList = document.getElementById('orders-list');
+                ordersList.innerHTML = '';
+
+                data.forEach(order => {
+                    const listItem = document.createElement('li');
+                    listItem.textContent = `${order.BurgerSize} ${order.BurgerType} with ${order.SideType} and ${order.DrinkType}`;
+                    ordersList.appendChild(listItem);
+                });
+            } else {
+                console.error('Error: Expected an array but got:', data);
+            }
+        } catch (error) {
+            console.error('Error fetching orders:', error);
         }
-
-        const orders = await response.json();
-
-        // Log the orders to check its structure
-        console.log('Fetched orders:', orders);
-
-        const ordersList = document.getElementById('orders-list');
-        ordersList.innerHTML = '';
-
-        // Assuming orders should be an array
-        if (Array.isArray(orders)) {
-            orders.forEach(order => {
-                const listItem = document.createElement('li');
-                listItem.textContent = `${order.BurgerSize} ${order.BurgerType} with ${order.SideType} and ${order.DrinkType}`;
-                ordersList.appendChild(listItem);
-            });
-        } else {
-            console.error('Error: Expected an array but got:', orders);
-        }
-    } catch (error) {
-        console.error('Error fetching orders:', error);
-    }
     }
 
         // Fetch orders on page load
