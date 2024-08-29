@@ -21,26 +21,6 @@
     </script>        
 </head>
 <body>
-    <div class="nav">
-        <a href="../index.html" class="logo">Burger<span class="burger">Mate</span></a>
-        <a href="../index.html">Home</a>
-        <a href="about.html">About</a>
-        <a href="feedback.html">Feedback</a>
-        <a href="orders.html">Orders</a>
-        <a class="special" href="menu.html">Menu</a>
-    </div>
-    <div class="content2">
-        <h1 class="orders-title">Here is the list of the orders</h1>
-        <div class="orders-container">
-            <ul id="orders-list" class="orders-list"></ul>
-            <img src="../images/bugboy.png" class="boyimage" />
-        </div>
-    </div>       
-    <hr class="border-line">
-    <div class="footer">
-        <p>BurgerMate © 2024</p>
-    </div>
-
     <script>
         // Updated API Gateway URL
         const apiUrl = 'https://ry392lwnck.execute-api.us-east-1.amazonaws.com/prod/orders';
@@ -89,6 +69,25 @@
         // Fetch orders on page load
         window.onload = fetchOrders;
     </script>
-
+    
+    <div class="nav">
+        <a href="../index.html" class="logo">Burger<span class="burger">Mate</span></a>
+        <a href="../index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="feedback.html">Feedback</a>
+        <a href="orders.html">Orders</a>
+        <a class="special" href="menu.html">Menu</a>
+    </div>
+    <div class="content1">
+        <h1 class="orders-title">Here is the list of the orders</h1>
+        <div class="orders-container">
+            <ul id="orders-list" class="orders-list"></ul>
+            <img src="../images/bugboy.png" class="boyimage" />
+        </div>
+    </div>       
+    <hr class="border-line">
+    <div class="footer">
+        <p>BurgerMate © 2024</p>
+    </div>
 </body>
 </html>
