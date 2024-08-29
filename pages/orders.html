@@ -8,15 +8,17 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
     <link rel="icon" href="../images/burger.png" type="image/png">
     <script type="text/javascript">
-      (function(d, m){
-          var kommunicateSettings = 
-              {"appId":"c51b11849512fea985056778c3a9f1d9","popupWidget":true,"automaticChatOpenOnNavigation":true};
-          var s = document.createElement("script"); s.type = "text/javascript"; s.async = true;
-          s.src = "https://widget.kommunicate.io/v2/kommunicate.app";
-          var h = document.getElementsByTagName("head")[0]; h.appendChild(s);
-          window.kommunicate = m; m._globals = kommunicateSettings;
-      })(document, window.kommunicate || {});
-  </script>
+        document.addEventListener('DOMContentLoaded', function() {
+            (function(d, m){
+                var kommunicateSettings = 
+                    {"appId":"c51b11849512fea985056778c3a9f1d9","popupWidget":true,"automaticChatOpenOnNavigation":true};
+                var s = document.createElement("script"); s.type = "text/javascript"; s.async = true;
+                s.src = "https://widget.kommunicate.io/v2/kommunicate.app";
+                var h = document.getElementsByTagName("head")[0]; h.appendChild(s);
+                window.kommunicate = m; m._globals = kommunicateSettings;
+            })(document, window.kommunicate || {});
+        });
+    </script>        
 </head>
 <body>
     <div class="nav">
@@ -39,22 +41,37 @@
     </div>
 
     <script>
-        // API Gateway URL (replace this with your actual URL)
-        const apiUrl = 'https://i1zljzghn0.execute-api.us-east-1.amazonaws.com/prod/orders';
+        // Updated API Gateway URL
+        const apiUrl = 'https://tyea8pvzh2.execute-api.us-east-1.amazonaws.com/prod/orders';
 
         async function fetchOrders() {
-    try {
-        const response = await fetch(apiUrl);
-        const orders = await response.json();
+            try {
+                const response = await fetch(apiUrl, {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json'
+                    }
+                });
 
-        const ordersList = document.getElementById('orders-list');
-        ordersList.innerHTML = '';
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
 
-        orders.forEach(order => {
-            const listItem = document.createElement('li');
-            listItem.textContent = `${order.BurgerSize} ${order.BurgerType} with ${order.SideType} and ${order.DrinkType}`;
-            ordersList.appendChild(listItem);
-        });
+                const data = await response.json();
+
+                if (Array.isArray(data)) {
+                    const ordersList = document.getElementById('orders-list');
+                    ordersList.innerHTML = '';
+
+                    data.forEach(order => {
+                        const listItem = document.createElement('li');
+                        listItem.textContent = `${order.BurgerSize} ${order.BurgerType} with ${order.SideType} and ${order.DrinkType}`;
+                        ordersList.appendChild(listItem);
+                    });
+                } else {
+                    console.error('Unexpected response:', data);
+                }
             } catch (error) {
                 console.error('Error fetching orders:', error);
             }
@@ -62,8 +79,8 @@
 
         // Fetch orders on page load
         window.onload = fetchOrders;
-
     </script>
+
 </body>
 </html>
   
