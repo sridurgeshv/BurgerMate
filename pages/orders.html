@@ -27,7 +27,7 @@
         <a href="about.html">About</a>
         <a href="feedback.html">Feedback</a>
         <a href="orders.html">Orders</a>
-        <a class = "special" href="menu.html">Menu</a>
+        <a class="special" href="menu.html">Menu</a>
     </div>
     <div class="content">
     <div class="orders">
@@ -42,7 +42,7 @@
 
     <script>
         // Updated API Gateway URL
-        const apiUrl = 'https://tyea8pvzh2.execute-api.us-east-1.amazonaws.com/prod/orders';
+        const apiUrl = 'https://ry392lwnck.execute-api.us-east-1.amazonaws.com/prod/orders';
 
         async function fetchOrders() {
             try {
@@ -58,7 +58,8 @@
                     throw new Error(`HTTP error! status: ${response.status}`);
                 }
 
-                const data = await response.json();
+                const responseData = await response.json();
+                const data = JSON.parse(responseData.body);
 
                 if (Array.isArray(data)) {
                     const ordersList = document.getElementById('orders-list');
@@ -66,7 +67,14 @@
 
                     data.forEach(order => {
                         const listItem = document.createElement('li');
-                        listItem.textContent = `${order.BurgerSize} ${order.BurgerType} with ${order.SideType} and ${order.DrinkType}`;
+                        listItem.innerHTML = `
+                            <strong>Order ID:</strong> ${order.OrderID}<br>
+                            <strong>Burger Type:</strong> ${order.BurgerType}<br>
+                            <strong>Size:</strong> ${order.BurgerSize} <br>
+                            <strong>Patty:</strong> ${order.Vegburger || order.NvegBurger || 'N/A'}<br>
+                            <strong>Side:</strong> ${order.SideType}<br>
+                            <strong>Drink:</strong> ${order.DrinkType}                            
+                        `;
                         ordersList.appendChild(listItem);
                     });
                 } else {
@@ -83,4 +91,3 @@
 
 </body>
 </html>
-  
